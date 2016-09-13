@@ -44,10 +44,10 @@ label:focus {
   background: #fff url(https://cdn4.iconfinder.com/data/icons/wirecons-free-vector-icons/32/menu-alt-512.png) 50% 50%/25px 25px no-repeat;
   display: none;
 }
-.menu ul li > label {
+.menu #menulist #menulistitem  > label {
   background: url(https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-right-b-128.png) 95% 50%/16px 16px no-repeat;
 }
-.menu ul li a, .menu ul li label {
+.menu #menulist #menulistitem a, .menu #menulist #menulistitem label {
   display: block;
   text-align: left;
   padding: 0 20px;
@@ -55,10 +55,10 @@ label:focus {
   text-decoration: none;
   color: #000;
 }
-.menu ul li a:hover, .menu ul li label:hover {
+.menu #menulist #menulistitem a:hover, .menu #menulist #menulistitem label:hover {
  /* color: #666; */
 }
-ul > li:hover {
+#menulist > #menulistitem:hover {
 background-color:#DBDBDB;
 }
 /* hide inputs */
@@ -119,18 +119,33 @@ p {
   font-size: 26px;
 }
 
-ul> li {
+#menulist> #menulistitem  {
   /* border-top: 1px solid lightgrey; */
   border-bottom: 1px solid #DBDBDB;
   /*border-right: 1px solid lightgrey; */
   margin: 0;
   }
 
-ul {
+#menulist {
 margin-top: 180px;
 border-top:1px solid #DBDBDB;
 }
 
 #backbutton{
+background: url(none);
+ border-bottom: 1px solid #DBDBDB; 
+margin: 0;
+  display: block;
+  text-align: left;
+  /* padding: 0 20px; */
+  line-height: 60px;
+  text-decoration: none;
+  color: #000;
+}
+
+#menulist> #backbutton:hover{
+background-color:#DBDBDB;
+}
+#backbuttonlabel{
 background: url(none);
 }
