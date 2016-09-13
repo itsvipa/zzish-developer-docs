@@ -30,15 +30,14 @@ scripts:
 
 # Set this variable to use a Custom Domain
 # The content of this variable will be directly inserted into the CNAME file
-#cname: docs.yourdomain.com
+cname: docs.zzish.com
 
 # Set the target branch in which to deploy the generated website
-#branch: gh-pages
+branch: gh-pages
 
 # Any variable you put in this file is also available in the Twig layouts:
 #title: Hello!
 
 # Base URL of the published website (no "/" at the end!)
 # You are advised to set and use this variable to write your links in the HTML layouts
-#baseUrl: http://username.github.io/your-project
-
+baseUrl: https://zzishdev.github.io/zzish-developer-docs
