@@ -4,13 +4,13 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>{{ title }}</title>
+        <title></title>
 
-        <link rel="stylesheet" href="{{ baseUrl }}/css/bootstrap.min.css">
-        <link rel="stylesheet" href="{{ baseUrl }}/css/font-awesome.min.css">
-        <link rel="stylesheet" href="{{ baseUrl }}/css/highlight.dark.css">
-        <link rel="stylesheet" href="{{ baseUrl }}/css/main.css">
-        <link rel="stylesheet" href="{{ baseUrl }}/css/menu.css">
+        <link rel="stylesheet" href="/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/css/font-awesome.min.css">
+        <link rel="stylesheet" href="/css/highlight.dark.css">
+        <link rel="stylesheet" href="/css/main.css">
+        <link rel="stylesheet" href="/css/menu.css">
     </head>
     <body>
 
@@ -216,44 +216,33 @@
        <header class="navbar navbar-default navbar-fixed-top">
 <a href="http://live.zzish.com"><img id="zzishlogo" src="https://live.zzish.com/assets/63563bd4f9bf06905c2636bd785e33fd.png" alt="Zzish" height="80px"></a>
            <a id="accbutton" href="https://developer.zzish.com">Go to my Account</a>
-           <!-- <a class="navbar-brand" href="{{ baseUrl }}/">
-                {{ title|default('The title') }}
+           <!-- <a class="navbar-brand" href="/">
+                The title
                 <small class="hidden-xs hidden-sm">
-                    {{ subTitle|default('This is the default subtitle!') }}
+                    This is the default subtitle!
                 </small>
             </a> -->
 
-            {% if github is defined %}
-                <a href="https://github.com/{{ github.user }}/{{ github.repo }}">
-                    <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png">
-                </a>
-            {% endif %}
-
+            
         </header>
 
-        <main class="{{ menu ? 'container-fluid' : 'container' }}">
+        <main class="container">
             <div class="row">
 
-                {% if menu is defined %}
-
-                    <nav id="sidebar" class="col-sm-3 col-lg-2" role="navigation">
-
-                        <ul class="nav nav-pills nav-stacked">
-                            {% for itemId, item in menu.items %}
-                                <li class="{{ itemId == currentMenu ? 'active' }}">
-                                    <a href="{{ item.absoluteUrl|default(baseUrl ~ '/' ~ item.relativeUrl) }}">
-                                        {{ item.text|raw }}
-                                    </a>
-                                </li>
-                            {% endfor %}
-                        </ul>
-
-                    </nav>
-
-                {% endif %}
-
-                <section id="content" class="{{ menu ? 'col-sm-offset-3 col-lg-offset-2 col-sm-9 col-lg-10' : 'col-sm-12' }}">
-                    {{ content|raw }}
+                
+                <section id="content" class="col-sm-12">
+                    <h1 id="use-the-zzish-launcher">Use the Zzish Launcher</h1>
+<p>To improve the student experience in the Zzish Learning Hub, you can provide a hook so that your app can be directly launched from the student's planner.</p>
+<h3><strong>STEP 1 - Update your Zzish App Details</strong></h3>
+<p>In the Developer console, enter the URL where you would like the user to be sent to when they launch your app from the Zzish Learning hub.</p>
+<h3><strong>STEP 2 - Add code to process the app when launched</strong></h3>
+<p>Add the following code to process the login.</p>
+<pre><code>Zzish.getCurrentUser(token, function(err, response) {
+    if (!err) {
+        var userId = response.uuid;
+        var groupCode = response.attributes.groupCode;
+    }
+}</code></pre>
                 </section>
 
             </div>
