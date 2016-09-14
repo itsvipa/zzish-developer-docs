@@ -5,11 +5,10 @@
 }
 
 #wrapper {
-  position: fixed;
   width: 100%;
   height: 100%;
-  overflow: hidden;
   background-color:#ffffff;
+  float:left;
 }
 
 label {
@@ -22,7 +21,7 @@ label:focus {
 }
 
 .menu {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   background: #fff;
@@ -31,6 +30,7 @@ label:focus {
   border-right:1px solid #DBDBDB;
   transform: translate3d(-240px, 0, 0);
   transition: transform 0.35s;
+
 }
 .menu label.menu-toggle {
   position: absolute;

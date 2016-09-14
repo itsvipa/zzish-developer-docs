@@ -3,7 +3,7 @@ html {
     min-height: 100%;
 }
 body {
-    font-size: 19px;
+    font-size: 16px;
 }
 
 @media (min-width: 1200px) {
@@ -17,8 +17,10 @@ main {
 }
 
 section {
+    position: absolute;
     margin-top: 30px;
     margin-bottom: 120px;
+
 }
 
 footer {
@@ -125,3 +127,52 @@ pre code {
     text-decoration: none;
 
 }
+
+#content
+{
+}
+
+#holder
+{
+margin-left:250px;
+}
+
+h1 {
+
+font-size:36px;
+}
+
+h4 {
+font-size: 20px;
+}
+
+#accountbutton:hover {
+    background: #fff;
+    color: #612c6c;
+    text-decoration: none;
+    }
+#accountbutton {
+    border: 2px solid #fff;
+    border-radius: 25px;
+    position: absolute;
+    right: 50px;
+    top: 15px;
+    font-size: 16px;
+    color: white;
+    padding:10px 20px 10px 20px;
+    }
+
+#backtozzish:hover {
+font-size:18px;
+right: 257px;
+    top: 12px;
+
+    }
+#backtozzish {
+    position: absolute;
+    right: 260px;
+    top: 15px;
+    font-size: 16px;
+    color: white;
+    padding:10px 20px 10px 20px;
+    }
