@@ -4,13 +4,13 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>{{ title }}</title>
+        <title></title>
 
-        <link rel="stylesheet" href="{{ baseUrl }}/css/bootstrap.min.css">
-        <link rel="stylesheet" href="{{ baseUrl }}/css/font-awesome.min.css">
-        <link rel="stylesheet" href="{{ baseUrl }}/css/highlight.dark.css">
-        <link rel="stylesheet" href="{{ baseUrl }}/css/main.css">
-        <link rel="stylesheet" href="{{ baseUrl }}/css/menu.css">
+        <link rel="stylesheet" href="https://zzishdev.github.io/zzish-developer-docs/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://zzishdev.github.io/zzish-developer-docs/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://zzishdev.github.io/zzish-developer-docs/css/highlight.dark.css">
+        <link rel="stylesheet" href="https://zzishdev.github.io/zzish-developer-docs/css/main.css">
+        <link rel="stylesheet" href="https://zzishdev.github.io/zzish-developer-docs/css/menu.css">
     </head>
     <body>
 
@@ -213,29 +213,108 @@
     </ul>
   </div>
          <div id="holder">
-         <main class="{{ menu ? 'container-fluid' : 'container' }}">
+         <main class="container">
             <div class="row">
 
-                {% if menu is defined %}
-
-                    <nav id="sidebar" class="col-sm-3 col-lg-2" role="navigation">
-
-                        <ul class="nav nav-pills nav-stacked">
-                            {% for itemId, item in menu.items %}
-                                <li class="{{ itemId == currentMenu ? 'active' }}">
-                                    <a href="{{ item.absoluteUrl|default(baseUrl ~ '/' ~ item.relativeUrl) }}">
-                                        {{ item.text|raw }}
-                                    </a>
-                                </li>
-                            {% endfor %}
-                        </ul>
-
-                    </nav>
-
-                {% endif %}
-
-                <section id="content" class="{{ menu ? 'col-sm-offset-3 col-lg-offset-2 col-sm-9 col-lg-10' : 'col-sm-12' }}">
-                    {{ content|raw }}
+                
+                <section id="content" class="col-sm-12">
+                    <p>USING THE ZZISH SDK</p>
+<p>STEP 1: Download the SDK</p>
+<p>Option 1: CocoaPods
+Include the &quot;ZzishSDK&quot; pod in your POD file.</p>
+<p>Option 2: Source Files
+You can just download and include our source code in your project. You can find the code at <a href="https://github.com/Zzish/zzishsdk-ios/tree/master/Pod/Classes">https://github.com/Zzish/zzishsdk-ios/tree/master/Pod/Classes</a>. Create a Group in your project and then drag the files over into that group. (Optional) You'll also need to download Reachability and drag that into your folder. You can find the files  here.</p>
+<p>STEP 2: Installing the SDK</p>
+<ol>
+<li>Import the Zzish.h header file</li>
+</ol>
+<pre><code>#import &lt;ZzishSDK/ZzishSDK.h&gt;</code></pre>
+<ol>
+<li>Within your applicationDidFinishLaunching method in your application's delegate, simply call the following method using the API key you received when you registered your app with Zzish (see developer console):</li>
+</ol>
+<pre><code>[Zzish startWithApplicationId:@"API_KEY" withBlock:^(NSDictionary *response) {
+NSLog(@"Response after initialising %@",response);
+}];</code></pre>
+<ol>
+<li>Within your applicationWillTerminate method in your application's delegate, simply call the following method.</li>
+</ol>
+<pre><code>[Zzish stop];</code></pre>
+<p>USING THE ZZISH LOGIN INSIDE OF YOUR APP
+Zzish provides a login mechanism so that you don't need to create a user management system. Simply allow your users to log in with Zzish where they can use an email/password, Google or Office 365.</p>
+<p>STEP 1 - Create a Zzish Login Button
+Create a UIButton using your preferred method (e.g  programatically or on a storyboard. Add the UIWebViewDelegate to the Controller</p>
+<p>STEP 2 - Configure Zzish hooks
+In the Controller that you are working in, do the following</p>
+<ol>
+<li>Call the Zzish Login (on the Click event of your button)
+<pre><code>[Zzish loginWithZzish:self WithBlock:^(NSDictionary *response) {
+    NSLog(@"USER UUID %@", response[@"payload"][@"uuid"]);
+    NSLog(@"GROUP CODE %@", response[@"payload"][@"attributes"][@"groupCode"]);
+}];</code></pre></li>
+<li>Add the WebView callback so we can ensure the WebView closes properly
+<pre><code>#pragma mark - Optional UIWebViewDelegate delegate methods
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
+{
+return [Zzish webView:webView shouldStartLoadWithRequest:request navigationType:navigationType];
+}</code></pre></li>
+</ol>
+<p>The two key pieces of information that you get from the response callback is the user's uuid and the group code. These are the two key pieces of information that you need to send to us when sending data.
+USE THE ZZISH LAUNCHER
+To improve the student experience in the Zzish Learning Hub, you can provide a hook so that your app can be directly launched from the student's planner.</p>
+<p>STEP 1 - Set up a Scheme</p>
+<ol>
+<li>Open up your Info.plist file</li>
+<li>Right click on the list of properties and click &quot;Add Row&quot;. </li>
+<li>Select URL Types for the new item. </li>
+<li>Click the grey arrow next to &quot;URL Types&quot; to show &quot;Item 0&quot;. </li>
+<li>Set your URL identifier to a unique string - something like &quot;zzishmycoolapp&quot;</li>
+</ol>
+<p>STEP 2 - Update your Zzish App Details
+In the Developer console, enter the scheme with a colon and two slashes (e.g. zzishmycoolapp://) into the &quot;iOS Launch Url&quot; of your app. </p>
+<p>STEP 3 - Add code to process the app when launched
+Add the following code to your application delegate</p>
+<pre><code>- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
+    [Zzish loadUserByTokenUrl:url WithBlock:^(NSDictionary *response) {
+        NSLog(@"USER UUID %@", response[@"payload"][@"uuid"]);
+        NSLog(@"GROUP CODE %@", response[@"payload"][@"attributes"][@"groupCode"]);
+}];
+}</code></pre>
+<p>SENDING DATA TO THE ZZISH DASHBOARDS
+You can configure your app to send student Data to the Zzish Dashboard.</p>
+<p>STEP 1 - Creating a Zzish User (OPTIONAL)
+You do not need this step if you use the Zzish Login or Zzish Launcher option. Both these methods will give the user uuid (as shown above). If you have your own login mechanism, you can attach a Zzish user account to your user.</p>
+<pre><code>ZZUser* user = [Zzish user:USER_ID];
+user.name = @"Ed";
+[user save];</code></pre>
+<p>The USER_ID field is YOUR unique id to represent the user. There is an optional saveWithBlock method if you need to wait for the response. This response will need to be successful before you can start tracking user data.</p>
+<p>STEP 2 - Request a Group Code from the user
+A group code is a unique code representing a class on the Zzish Learning Hub. You do not need this step if you use the Zzish Login or Zzish Launcher option. Both these methods will give the group code (as shown above). Otherwise you can request it yourself from the user. We provide a simple validation process</p>
+<pre><code>[Zzish validateClassCode:@"GROUP CODE" withBlock:^(NSDictionary *response) {
+    //result[@"status"] will be 200 if it's valid, 400 if not
+}];</code></pre>
+<p>STEP 3 - Create an activity for the user
+A Zzish activity represents an event (e.g. Quiz) with a duration which contains a series of interactions (e.g. Questions). </p>
+<pre><code>ZZActivity* activity = [user createActivity:@"UNIQUE NAME OF ACTIVITY"];
+activity.groupCode = @"GROUP_CODE"
+[activity startWithBlock:^(NSDictionary *response) {
+    NSLog(@"Response after starting %@",response);
+}];</code></pre>
+<p>STEP 4 - Log User Actions</p>
+<pre><code>ZZAction* action = [activity createAction:@"What is 3*3"];
+action.response=@"8";
+[action score:84];
+[action correct:false];
+[action saveWithBlock:^(NSDictionary *response) {
+    NSLog(@"Saved action with result %@",response);
+}];</code></pre>
+<p>STEP 5 - Stop or Cancel the Activity
+Once the user has finished or the user arbitrarily cancels the activity, you can user the following two methods.</p>
+<pre><code>[activity stopWithBlock:^(NSDictionary *response) {
+    NSLog(@"Response after stopping %@",response);
+}];
+[activity cancelWithBlock:^(NSDictionary *response) {
+    NSLog(@"Response after stopping %@",response);
+}];</code></pre>
                 </section>
 
             </div>
@@ -249,19 +328,14 @@
 <a href="http://live.zzish.com"><img id="zzishlogo" src="https://live.zzish.com/assets/63563bd4f9bf06905c2636bd785e33fd.png" alt="Zzish" height="80px"></a>
            <a id="backtozzish" href="https://developer.zzish.com">BACK TO ZZISH</a>
            <a id="accountbutton" href="https://developer.zzish.com">GO TO MY ACCOUNT</a>
-           <!-- <a class="navbar-brand" href="{{ baseUrl }}/">
-                {{ title|default('The title') }}
+           <!-- <a class="navbar-brand" href="https://zzishdev.github.io/zzish-developer-docs/">
+                The title
                 <small class="hidden-xs hidden-sm">
-                    {{ subTitle|default('This is the default subtitle!') }}
+                    This is the default subtitle!
                 </small>
             </a> -->
 
-            {% if github is defined %}
-                <a href="https://github.com/{{ github.user }}/{{ github.repo }}">
-                    <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png">
-                </a>
-            {% endif %}
-
+            
         </header>
 
  
