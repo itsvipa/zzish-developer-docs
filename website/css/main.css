@@ -176,3 +176,30 @@ right: 257px;
     color: white;
     padding:10px 20px 10px 20px;
     }
+
+#searchcon {
+    position: absolute;
+    right:420px;
+    top: 25px;
+    color: white;
+    text-align:right;
+    }
+
+#searchicon:hover{
+height:40px;
+}
+
+#searchbar {
+width:400px;
+position:relative;
+    height:0px;
+    visibility:hidden;
+    background:none;
+    border:none;
+    bottom:20px;
+    color:black;
+}
+
+#searchbar > * {
+background:none;
+}
