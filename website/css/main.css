@@ -203,3 +203,7 @@ position:relative;
 #searchbar > * {
 background:none;
 }
+
+#jranker {
+display:none;
+}
