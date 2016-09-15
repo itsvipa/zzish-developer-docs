@@ -178,6 +178,7 @@ right: 257px;
     }
 
 #searchcon {
+    display:none;
     position: absolute;
     right:420px;
     top: 25px;
