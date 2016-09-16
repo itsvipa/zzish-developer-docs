@@ -36,7 +36,7 @@ cname: docs.zzish.com
 branch: gh-pages
 
 # Any variable you put in this file is also available in the Twig layouts:
-#title: Hello!
+title: Zzish Documentation
 
 # Base URL of the published website (no "/" at the end!)
 # You are advised to set and use this variable to write your links in the HTML layouts
