@@ -55,7 +55,7 @@ li {
     max-width: 100%;
     padding: 4px;
     background-color: #fff;
-    border: 1px solid #ddd;
+   /* border: 1px solid #ddd; */
     border-radius: 4px;
     
 }
@@ -207,4 +207,8 @@ background:none;
 
 #jranker {
 display:none;
+}
+
+td {
+padding:20px;
 }
