@@ -1,4 +1,4 @@
-#Modules
+﻿#Modules
 
 Adding the Zzish API is quick and easy. Here is a list of modules you can connect and utilise. They have a few things in common: they are easy to add and they create extra functionality in your app in record time. Once you have integrated with Zzish you can also use our badge to show the world there are new features to explore!
 
@@ -6,7 +6,7 @@ Adding the Zzish API is quick and easy. Here is a list of modules you can connec
 
 Our App Store is a collection of apps that are useful in the classrooms or as homework assignments. Teachers an browse, select and use them with a few clicks. No development effort needed, giving you a new worldwide distribution channel.  
 
-[SUBMIT YOUR APP](#)
+[SUBMIT YOUR APP](https://developer.zzish.com/)
 
 ###**Teacher Dashboard**
 
