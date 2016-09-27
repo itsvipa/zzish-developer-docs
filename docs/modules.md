@@ -1,3 +1,4 @@
+﻿
 #Modules
 
 Adding the Zzish API is quick and easy. Here is a list of modules you can connect and utilise. They have a few things in common: they are easy to add and they create extra functionality in your app in record time. Once you have integrated with Zzish you can also use our badge to show the world there are new features to explore!
@@ -66,15 +67,17 @@ The App Analytics module lets you effortlessly measure both the engagement and e
 #####Logging Activities/Actions
 
 The Analytics is calculated based on our core Activities and Actions. Some optional attributes are required based on your App Type.
-#####Specific Customisation Based on App Type
 
-###**Level Progression App**
+###**Specific Customisation Based on App Type**
+
+
+#####Level Progression App
 If your app has levels that a user progresses through, you should have an activity for each level in your App. You should also set the "level" attribute in the activity.
 
-###**Repeated Score Based Activities**
+#####Repeated Score Based Activities
 Each exercise should have its own activity name so that we can differ between them. No additional attributes need to be recorded.
 
-###**Fact Based Memorization**
+#####Fact Based Memorization
 
 You should be using the ZZDeck and ZZCard Zzish objects to track the facts that you are memorising. When saving an Action set the card attribute appropriately. 
 Adaptive Algorithm for fact memorising apps
