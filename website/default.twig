@@ -303,27 +303,21 @@ var checkboxValues = JSON.parse(localStorage.getItem('checkboxValues')) || {},
     $checkboxes = $(":checkbox");
 var writelock = true;
 $checkboxes.on("change", function(){
-	   console.log("Change detected");
   $checkboxes.each(function(){
 	  if( this.checked  == true) 
 	  {
         checkboxValues[this.id] = this.checked;
         writelock=true;
-        console.log("writelock on");
-        console.log("TRUUEEEE" + this.checked);
 	};
 	
 	if ( this.checked  == false ) {
 		if (writelock == false) {
         checkboxValues[this.id] = this.checked;
-                console.log("FALSCH" + this.checked);
 			};
 			writelock=false;
-			    console.log("writelock off");
 		}; 
 	
 	
-    	   //console.log("Checked chahahahsi" + this.checked);
   });
   
   localStorage.setItem("checkboxValues", JSON.stringify(checkboxValues));
